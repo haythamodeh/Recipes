@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var meals: [Meal] = []
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            List(meals) { meal in
+                NavigationLink(destination: MealDetailView(meal: meal)) {
+                    Text(meal.meal)
+                }
+            }
+            .navigationTitle("Deserts")
+            .onAppear {
+                Api().getMeals { meals in
+                    self.meals = meals
+                }
+            }
         }
-        .padding()
+
     }
 }
 
@@ -24,3 +33,20 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+struct MealDetailView: View {
+    @State var meal: Meal
+
+    var body: some View {
+        VStack{
+            Text(meal.id)
+        }
+        .onAppear {
+            Api().getMealById(id: meal.id) { updatedMeal in
+                meal = updatedMeal
+            }
+        }
+
+    }
+}
+

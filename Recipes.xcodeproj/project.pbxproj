@@ -14,6 +14,7 @@
 		7284B7612A37E02C0047671A /* RecipesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7284B7602A37E02C0047671A /* RecipesTests.swift */; };
 		7284B76B2A37E02C0047671A /* RecipesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7284B76A2A37E02C0047671A /* RecipesUITests.swift */; };
 		7284B76D2A37E02C0047671A /* RecipesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7284B76C2A37E02C0047671A /* RecipesUITestsLaunchTests.swift */; };
+		7284B77C2A37E24C0047671A /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7284B77B2A37E24C0047671A /* Meal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		7284B7662A37E02C0047671A /* RecipesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7284B76A2A37E02C0047671A /* RecipesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesUITests.swift; sourceTree = "<group>"; };
 		7284B76C2A37E02C0047671A /* RecipesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7284B77B2A37E24C0047671A /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				7284B74F2A37E02C0047671A /* RecipesApp.swift */,
 				7284B7512A37E02C0047671A /* ContentView.swift */,
+				7284B77B2A37E24C0047671A /* Meal.swift */,
 				7284B7532A37E02C0047671A /* Assets.xcassets */,
 				7284B7552A37E02C0047671A /* Preview Content */,
 			);
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7284B7522A37E02C0047671A /* ContentView.swift in Sources */,
+				7284B77C2A37E24C0047671A /* Meal.swift in Sources */,
 				7284B7502A37E02C0047671A /* RecipesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
