@@ -5,11 +5,10 @@
 //  Created by Haytham Odeh on 6/12/23.
 //
 
-import XCTest
 @testable import Recipes
+import XCTest
 
 final class RecipesTests: XCTestCase {
-
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -33,4 +32,62 @@ final class RecipesTests: XCTestCase {
         }
     }
 
+    func testFetchDessertMeals() {
+        // create endpoint and expectation
+        let endpointURL = URL(string: "https://themealdb.com/api/json/v1/1/filter.php?c=Dessert")!
+        let expectation = XCTestExpectation(description: "Fetch dessert meals")
+
+        // Act
+        let task = URLSession.shared.dataTask(with: endpointURL) { data, _, error in
+            // Assert
+            // Check if there's no error
+            XCTAssertNil(error)
+
+            if let data = data {
+                // Check data is not empty
+                XCTAssertGreaterThan(data.count, 0)
+
+                expectation.fulfill()
+            } else {
+                XCTFail("No data received")
+            }
+        }
+        task.resume()
+
+        // Wait for the expectation to be fulfilled
+        wait(for: [expectation], timeout: 5.0)
+    }
+
+    func testFetchDessertMealById() {
+        let id = "52893"
+        let endpointURL = URL(string: "https://themealdb.com/api/json/v1/1/lookup.php?i=\(id)")!
+
+        let expectation = XCTestExpectation(description: "Fetch dessert meal by id")
+
+        let task = URLSession.shared.dataTask(with: endpointURL) { data, _, error in
+            XCTAssertNil(error)
+
+            if let data = data {
+                do {
+                    //deserializes the JSON data and then accesses the "meals" array
+                    if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                       let meals = json["meals"] as? [[String: Any]],
+                       meals.count == 1
+                    {
+                        expectation.fulfill()
+                    } else {
+                        XCTFail("Invalid JSON response or meals count is not 1")
+                    }
+                } catch {
+                    XCTFail("Error deserializing JSON: \(error)")
+                }
+            } else {
+                XCTFail("No data received")
+            }
+        }
+
+        task.resume()
+
+        wait(for: [expectation], timeout: 5.0)
+    }
 }
